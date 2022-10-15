@@ -6,9 +6,15 @@ using UnityEngine.UIElements;
 
 public class DroneController : MonoBehaviour
 {
-    [SerializeField] private int energy;
+    [SerializeField] private GameObject gameOver;
+
+    [SerializeField] private GameObject Drone;
+
+    [SerializeField] private GameObject sceneMap;
     
-    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] public float energy;
+    
+    [SerializeField] private float moveSpeed = 4f;
     
     [SerializeField]private Transform[] wayPoint;
 
@@ -33,23 +39,49 @@ public class DroneController : MonoBehaviour
             if (currentTargetPosition.sqrMagnitude <= 0)
             {
                 currentIndex++;
-            
+
                 if (currentIndex >= wayPoint.Length)
+                {
+                    onReachEndPoint();
+                    
                     return;
+                }
             
                 currentTarget = wayPoint[currentIndex];
-                Debug.Log("Completo");
+                Vector2 distance = currentTarget.position - transform.position;
+                Debug.Log(distance.magnitude);
             }
             MoveToTarget(currentTarget);
-            
 
             energy--;
             float energyGasto = Time.time;
         }
         else
         {
-            Debug.Log("Sem Bateria");
+            OnOutOffEnergy();
         }
+    }
+
+    private void onReachEndPoint()
+    {
+        if (energy == 0)
+        {
+            Debug.Log("Perimetro Completo");
+        }
+        if (energy > 0)
+        {
+            Debug.Log("Ainda resta energia");
+        }
+    }
+
+    private void OnOutOffEnergy()
+    {
+        Drone.SetActive(false);
+            
+        sceneMap.SetActive(false);
+            
+        gameOver.SetActive(true);
+        Debug.Log("Sem Bateria");
         
     }
 
