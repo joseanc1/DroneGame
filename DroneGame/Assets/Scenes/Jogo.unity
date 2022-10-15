@@ -2539,7 +2539,7 @@ MonoBehaviour:
   gameOver: {fileID: 1175461339491505714}
   Drone: {fileID: 845262173}
   sceneMap: {fileID: 2024559077}
-  energy: 2000
+  energy: 4280
   moveSpeed: 2
   wayPoint:
   - {fileID: 564899367}
