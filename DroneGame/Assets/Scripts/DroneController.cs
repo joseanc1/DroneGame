@@ -5,10 +5,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class DroneController : MonoBehaviour
-{ 
+{
+    [SerializeField] private int energy;
+    
     [SerializeField] private float moveSpeed = 2f;
     
-
     [SerializeField]private Transform[] wayPoint;
 
     private Transform currentTarget;
@@ -17,27 +18,39 @@ public class DroneController : MonoBehaviour
 
     private void Start()
     {
-        
         currentTarget = wayPoint[currentIndex];
     }
 
     void Update()
     {
-        if (currentIndex >= wayPoint.Length)
+        if (energy > 0)
         {
-            return;
-        }
-        Vector2 currentTargetPosition = currentTarget.position - transform.position;
-        if (currentTargetPosition.sqrMagnitude <= 0)
-        {
-            currentIndex++;
-            
             if (currentIndex >= wayPoint.Length)
+            {
                 return;
+            }
+            Vector2 currentTargetPosition = currentTarget.position - transform.position;
+            if (currentTargetPosition.sqrMagnitude <= 0)
+            {
+                currentIndex++;
             
-            currentTarget = wayPoint[currentIndex];
+                if (currentIndex >= wayPoint.Length)
+                    return;
+            
+                currentTarget = wayPoint[currentIndex];
+                Debug.Log("Completo");
+            }
+            MoveToTarget(currentTarget);
+            
+
+            energy--;
+            float energyGasto = Time.time;
         }
-        MoveToTarget(currentTarget);
+        else
+        {
+            Debug.Log("Sem Bateria");
+        }
+        
     }
 
     private void MoveToTarget(Transform target)

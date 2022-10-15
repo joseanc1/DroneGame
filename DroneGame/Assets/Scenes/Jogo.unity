@@ -2063,6 +2063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff022cdb754c5cf4dbada621851d5320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energy: 500
   moveSpeed: 2
   wayPoint:
   - {fileID: 564899367}
