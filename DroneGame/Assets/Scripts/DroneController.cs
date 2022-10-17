@@ -66,10 +66,14 @@ public class DroneController : MonoBehaviour
     {
         if (energy == 0)
         {
+            gameOver.SetActive(true);
+            sceneMap.SetActive(false);
             Debug.Log("Perimetro Completo");
         }
         if (energy > 0)
         {
+            gameOver.SetActive(true);
+            sceneMap.SetActive(false);
             Debug.Log("Ainda resta energia");
         }
     }

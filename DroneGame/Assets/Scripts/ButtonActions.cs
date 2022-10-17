@@ -47,7 +47,25 @@ public class ButtonActions : MonoBehaviour
 
     public void AddEnergyOnClick()
     {
-        energyDrone.energy += 300f;
-        Debug.Log("+10 energy");
+        energyDrone.energy += 42.8f;
+        Debug.Log("+1% energy");
+    }
+
+    public void EnergyOnClick()
+    {
+        energyDrone.energy += 428f;
+        Debug.Log("+10% energy");
+    }
+
+    public void Remove10Energy()
+    {
+        energyDrone.energy -= 428f;
+        Debug.Log("-10% energy");
+    }
+
+    public void Remove1Energy()
+    {
+        energyDrone.energy -= 42.8f;
+        Debug.Log("-1% energy");
     }
 }
