@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,9 @@ public class ButtonActions : MonoBehaviour
     {
         if (Controller.activeInHierarchy == true)
         {
+            
+           
+            
             Controller.SetActive(false);
         }
         else
@@ -68,4 +72,5 @@ public class ButtonActions : MonoBehaviour
         energyDrone.energy -= 42.8f;
         Debug.Log("-1% energy");
     }
+
 }
